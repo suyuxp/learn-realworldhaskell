@@ -24,3 +24,9 @@
 	0
 	*Main> length' []
 	0
+
+## Ex-3-P69.hs
+
+	:load Ex-3-P69.hs
+	mean [1,2,3]       -- 2
+	mean [1.0,2,3.3]   -- 2.1
