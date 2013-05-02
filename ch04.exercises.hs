@@ -19,3 +19,17 @@ safeLast xs = Just (last xs)
 
 safeInit [] = Nothing
 safeInit xs = Just (init xs)
+
+
+
+-- 2. Write a function splitWith that acts similarly to words but takes a predicate and a list of any type,
+--    and then splits its input list on every element for which the predicate returns False:
+--
+--    splitWith :: (a -> Bool) -> [a] -> [[a]]
+
+splitWith _ [] = []
+splitWith pred (x:xs) =
+    let (pre, suf) = break pred xs
+    in case pre of
+         [] -> [x] : (splitWith pred suf)
+         _  -> (x : pre) : (splitWith pred suf)
