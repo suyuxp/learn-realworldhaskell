@@ -28,8 +28,8 @@ safeInit xs = Just (init xs)
 --    splitWith :: (a -> Bool) -> [a] -> [[a]]
 
 splitWith _ [] = []
-splitWith pred (x:xs) =
-    case pred x of
-      True  -> splitWith pred xs
-      False -> let (pre, suf) = break pred xs
-               in (x : pre) : (splitWith pred suf)
+splitWith pred xs =
+    let (pre, suf) = break pred xs
+    in case pre of
+         [] -> splitWith pred (tail suf)
+         _  -> pre : (splitWith pred suf)
