@@ -29,7 +29,8 @@ safeInit xs = Just (init xs)
 
 splitWith _ [] = []
 splitWith pred (x:xs) =
-    let (pre, suf) = break pred xs
-    in case pre of
-         [] -> [x] : (splitWith pred suf)
-         _  -> (x : pre) : (splitWith pred suf)
+    case pred x of
+      False -> splitWith pred xs
+      True  -> let (pre, suf) = break notPred xs
+               in (x : pre) : (splitWith pred suf)
+    where notPred y = not $ pred y
