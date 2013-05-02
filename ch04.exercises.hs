@@ -33,3 +33,15 @@ splitWith pred xs =
     in case pre of
          [] -> splitWith pred (tail suf)
          _  -> pre : (splitWith pred suf)
+
+
+-- 4. Write a program that transposes the text in a file.
+--    For instance, it should convert "hello\nworld\n" to "hw\neo\nlr\nll\nod\n".
+
+-- usage: unlines $ transposes $ lines "hello\n\nworlda\nA\n\n12345678"
+
+transposes [] = []
+transposes xs = (map head $ validData) : transposes (valid $ map tail $ validData)
+    where validData = valid xs
+          valid = filter notNull
+          notNull x = not $ null x
