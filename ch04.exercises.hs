@@ -1,3 +1,6 @@
+import Data.Char (digitToInt)
+
+
 -- CH04/P84
 
 -- 1. Write your own “safe” definitions of the standard partial list functions,
@@ -45,3 +48,18 @@ transposes xs = (map head $ validData) : transposes (valid $ map tail $ validDat
     where validData = valid xs
           valid = filter notNull
           notNull x = not $ null x
+
+
+
+
+-- CH04/P97
+
+-- 1. Use a fold (choosing the appropriate fold will make your code much simpler) to rewrite and
+--    improve upon the asInt function from the earlier section“Explicit Re- cursion” on page 85.
+--
+--    asInt_fold :: String -> Int
+
+-- import Data.Char (digitToInt)
+
+asInt_fold = foldl hex 0
+    where hex a b = a * 10 + (digitToInt b)
