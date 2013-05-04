@@ -61,5 +61,7 @@ transposes xs = (map head $ validData) : transposes (valid $ map tail $ validDat
 
 -- import Data.Char (digitToInt)
 
-asInt_fold = foldl hex 0
+asInt_fold [] = 0
+asInt_fold ('-':xs) = (-1) * (asInt_fold xs)
+asInt_fold xs = foldl hex 0 xs
     where hex a b = a * 10 + (digitToInt b)
